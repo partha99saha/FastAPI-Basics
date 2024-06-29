@@ -3,7 +3,7 @@ from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from jose import JWTError, jwt
 from sqlalchemy.orm import Session
-from app.db import get_db
+from app.db import conn_db
 from app.models.user import User
 from app.schemas.auth import TokenData
 import config
@@ -25,7 +25,7 @@ def create_access_token(data: dict, expires_delta: timedelta = None):
 
 
 # Function to get current user
-def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)):
+def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(conn_db)):
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",

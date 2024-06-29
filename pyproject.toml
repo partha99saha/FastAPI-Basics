@@ -5,14 +5,15 @@ include = '\.pyi?$'
 
 [tool.black.exclude]
 paths = [
-    "venv",    # Exclude virtual environment directory
-    ".venv",   # Exclude hidden virtual environment directory
-    "tests/",  # Exclude tests directory
+    "fastapi_env",    # Exclude virtual environment directory
+    ".venv",          # Exclude hidden virtual environment directory
+    "tests",         # Exclude tests directory
+    "migration",     # Exclude migration directory
 ]
 
 [tool.black.ignore]
 # Add specific files or directories to ignore formatting
 files = [
-    "__init__.py",   
+    "__init__.py"
 ]
 

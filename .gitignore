@@ -11,7 +11,7 @@ venv/
 env/
 ENV/
 assets
-fastapi_env
+/fastapi_env
 
 # User-specific files
 *.pyc

@@ -24,5 +24,4 @@ def create_user(db: Session, user: UserCreate):
         return db_user
     except Exception as e:
         logger.error("Error in  create_user", exc_info=True)
-        print(str(e))
         raise str(e)

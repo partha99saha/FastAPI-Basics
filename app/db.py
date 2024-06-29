@@ -9,12 +9,11 @@ create_session = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
 
-def get_db() -> Session:  # type: ignore
+def conn_db() -> Session:  # type: ignore
     db = create_session()
     try:
         yield db
-    except Exception as e:
+    except Exception:
         db.rollback()
-        raise e
     finally:
         db.close()
