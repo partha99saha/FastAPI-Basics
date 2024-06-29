@@ -20,6 +20,7 @@ WORKDIR /app
 
 # Install Python dependencies
 COPY requirements.txt .
+RUN pip install --no-cache-dir --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the entire project directory into the container
@@ -30,3 +31,6 @@ EXPOSE 8000
 
 # Command to run the application
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+
+# sudo docker build -t my-fastapi-app .
+# docker run -p 8000:8000 my-fastapi-app
