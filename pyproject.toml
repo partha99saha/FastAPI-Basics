@@ -1,0 +1,18 @@
+[tool.black]
+line-length = 100
+target-version = ['py39'] 
+include = '\.pyi?$'  
+
+[tool.black.exclude]
+paths = [
+    "venv",    # Exclude virtual environment directory
+    ".venv",   # Exclude hidden virtual environment directory
+    "tests/",  # Exclude tests directory
+]
+
+[tool.black.ignore]
+# Add specific files or directories to ignore formatting
+files = [
+    "__init__.py",   
+]
+

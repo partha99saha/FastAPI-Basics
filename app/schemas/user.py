@@ -16,7 +16,7 @@ class UserCreate(UserBase):
 
 
 class UserResponse(UserBase):
-    id: int
+    id: str
 
     class Config:
         from_attributes = True

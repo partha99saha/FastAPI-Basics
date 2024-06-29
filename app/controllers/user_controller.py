@@ -3,6 +3,7 @@ from app.models.user import User
 from app.schemas.user import UserCreate
 from app.controllers.auth_controller import get_password_hash
 from fastapi import HTTPException
+from app.logger import logger
 
 
 def get_user(db: Session, username: str):
@@ -11,9 +12,6 @@ def get_user(db: Session, username: str):
 
 def create_user(db: Session, user: UserCreate):
     try:
-        db_user = get_user(db, user.username)
-        if db_user:
-            raise HTTPException(status_code=400, detail="Username already registered")
         hashed_password = get_password_hash(user.password)
         db_user = User(
             username=user.username,
@@ -25,4 +23,6 @@ def create_user(db: Session, user: UserCreate):
         db.refresh(db_user)
         return db_user
     except Exception as e:
+        logger.error("Error in  create_user", exc_info=True)
+        print(str(e))
         raise str(e)

@@ -1,0 +1,11 @@
+INTERNAL_SERVER_ERROR = {"error": "Internal server error", "code": 500}
+RESOURCE_NOT_FOUND = {"error": "Resource Not Found", "code": 404}
+URL_NOT_FOUND = {"error": "URL Not Found", "code": 404}
+AUTH_FOUND = {"error": "User not Authenticated", "code": 400}
+USER_NOT_FOUND = {"error": "User not Found", "code": 400}
+SIGNUP_SUCESS = {"info": "Signup Successfully", "code": 200}
+LOGIN_SUCESS = {"info": "Login Successfully", "code": 200}
+CREATED_SUCESS = {"info": "Created Successfully", "code": 200}
+FETCH_SUCESS = {"info": "Data Fetch Successfully", "code": 200}
+UPDATED_SUCESS = {"info": "Updated Successfully", "code": 200}
+DELETED_SUCESS = {"info": "Deleted Successfully", "code": 200}

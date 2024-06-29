@@ -11,6 +11,7 @@ venv/
 env/
 ENV/
 assets
+fastapi_env
 
 # User-specific files
 *.pyc
@@ -24,3 +25,4 @@ Thumbs.db
 
 # Log files
 *.log
+*.db

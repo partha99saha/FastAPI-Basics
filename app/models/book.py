@@ -1,12 +1,13 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
 from sqlalchemy.sql import func
 from app.db import Base
+import uuid
 
 
 class Book(Base):
     __tablename__ = "books"
 
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(String, primary_key=True, index=True, default=str(uuid.uuid4()))
     title = Column(String, index=True)
     author = Column(String, nullable=True)
     owner_id = Column(String, nullable=True)
