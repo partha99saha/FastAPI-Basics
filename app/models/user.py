@@ -8,9 +8,8 @@ class User(Base):
     id = Column(Integer, primary_key=True, index=True)
     username = Column(String, unique=True, index=True)
     email = Column(String, unique=True, index=True)
-    full_name = Column(String, index=True)
     hashed_password = Column(String)
-    disabled = Column(Boolean, default=False)
+    full_name = Column(String, nullable=True)
 
     @staticmethod
     def get_user_by_username(db, username: str):

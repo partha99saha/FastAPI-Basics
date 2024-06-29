@@ -5,10 +5,18 @@ from sqlalchemy.orm import Session
 from app.schemas.auth import Token
 from app.controllers.auth_controller import authenticate_user, create_access_token
 from app.db import get_db
+from app.schemas.user import UserCreate, UserResponse
+from app.controllers.user_controller import create_user, get_user
 
 router = APIRouter()
 
 ACCESS_TOKEN_EXPIRE_MINUTES = 300
+
+
+@router.post("/signup", response_model=UserResponse)
+def signup(user: UserCreate, db: Session = Depends(get_db)):
+    db_user = create_user(db, user)
+    return db_user
 
 
 @router.post("/login", response_model=Token)
