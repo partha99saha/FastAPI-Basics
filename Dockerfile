@@ -8,19 +8,25 @@ ENV PYTHONUNBUFFERED 1
 # Install system dependencies
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-        gcc \
-        libc-dev \
-        libffi-dev \
-        libssl-dev \
-        python3-dev \
+    gcc \
+    libc-dev \
+    libffi-dev \
+    libssl-dev \
+    python3-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Set the working directory in the container
 WORKDIR /app
 
-# Install Python dependencies
+# Copy the requirements file
 COPY requirements.txt .
-RUN pip install --no-cache-dir --upgrade pip
+
+# Upgrade pip and install virtualenv
+RUN python -m pip install --upgrade pip setuptools wheel virtualenv
+
+# Create a virtual environment and install dependencies
+RUN python -m virtualenv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the entire project directory into the container
@@ -32,5 +38,6 @@ EXPOSE 8000
 # Command to run the application
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
 
-# sudo docker build -t my-fastapi-app .
-# docker run -p 8000:8000 my-fastapi-app
+
+# sudo docker build -t fastapi-app .
+# sudo docker run -p 8000:8000 fastapi-app

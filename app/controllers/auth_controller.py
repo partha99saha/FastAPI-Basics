@@ -1,5 +1,5 @@
 from typing import Optional
-from middleware.auth import create_access_token
+from app.middleware.auth import create_access_token
 from sqlalchemy.orm import Session
 from app.models.user import User
 from passlib.context import CryptContext
