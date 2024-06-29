@@ -1,4 +1,3 @@
-# app/schemas/book.py
 from pydantic import BaseModel
 
 class BookBase(BaseModel):
@@ -11,6 +10,7 @@ class BookCreate(BookBase):
 
 class Book(BookBase):
     id: int
+    owner_id: int
 
     class Config:
         orm_mode = True
