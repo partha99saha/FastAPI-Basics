@@ -1,20 +1,15 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
 from .db import Base, engine
 from .views import auth as auth_view
 from .views import book as book_view
-from .views import user as user_view
 
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
 # CORS settings
-origins = [
-    "http://localhost",
-    "http://localhost:8080"
-]
+origins = ["http://localhost", "http://localhost:8000"]
 
 app.add_middleware(
     CORSMiddleware,
@@ -24,7 +19,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Endpoint for Swagger UI "/docs"
+# http://localhost:8000/docs
+
 # Include routers from views
 app.include_router(auth_view.router, prefix="/auth", tags=["auth"])
 app.include_router(book_view.router, prefix="/books", tags=["books"])
-app.include_router(user_view.router, prefix="/users", tags=["users"])

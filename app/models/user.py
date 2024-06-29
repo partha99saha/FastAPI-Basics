@@ -1,5 +1,6 @@
-from sqlalchemy import Column, Integer, String, Boolean
+from sqlalchemy import Column, Integer, String, Boolean, DateTime
 from app.db import Base
+from sqlalchemy.sql import func
 
 
 class User(Base):
@@ -10,6 +11,8 @@ class User(Base):
     email = Column(String, unique=True, index=True)
     hashed_password = Column(String)
     full_name = Column(String, nullable=True)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    updated_at = Column(DateTime(timezone=True), onupdate=func.now())
 
     @staticmethod
     def get_user_by_username(db, username: str):

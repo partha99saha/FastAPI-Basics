@@ -10,13 +10,13 @@ from app.models.user import User
 router = APIRouter()
 
 
-@router.get("/", response_model=List[Book])
+@router.get("/getbooks", response_model=List[Book])
 def read_books(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
     books = get_books(db, skip=skip, limit=limit)
     return books
 
 
-@router.post("/", response_model=Book)
+@router.post("/addbooks", response_model=Book)
 def create_book_for_user(
     book: BookCreate,
     db: Session = Depends(get_db),

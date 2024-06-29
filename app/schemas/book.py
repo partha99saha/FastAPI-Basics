@@ -6,7 +6,8 @@ class BookBase(BaseModel):
     description: str
 
 class BookCreate(BookBase):
-    pass
+    title: str
+    description: str
 
 class Book(BookBase):
     id: int
